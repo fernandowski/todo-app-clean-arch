@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  todo-application:
+    build: .
+    command: ["yarn", "run", "dev"]
+    ports:
+      - "3000:3000"
+    image: todo-app
+    volumes:
+      - .:/app
