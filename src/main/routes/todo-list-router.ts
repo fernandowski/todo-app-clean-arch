@@ -1,7 +1,7 @@
 import {Router} from "express";
 import RouteHandler from "./route-handler";
 import {addTodoListUseCase, authenticationMiddleware, listUserTodoList} from "../factories/compose";
-import {middlewareHandler} from "../middleware/middleware-handler";
+import {middlewareHandler} from "../middlewares/middleware-handler";
 import {AddTodoListController} from "../../infrastructure/web/controllers/todo-list/AddTodoListController";
 import {ListTodoListController} from "../../infrastructure/web/controllers/todo-list/ListTodoListController";
 
