@@ -1,5 +1,13 @@
 version: 2.1
 jobs:
+  approval-production:
+    type: approval
+    docker:
+      - image: cimg/base:2024.02
+    steps:
+      - run:
+          name: Awaiting Approval
+          command: echo "Deployment requires manual approval"
   build-and-test:
     docker:
       - image: cimg/base:2024.02
@@ -10,7 +18,22 @@ jobs:
           name: Execute Units
           command: |
             docker build . --target=unit-test
+  deploy:
+    docker:
+      - image: cimg/base:2024.02
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo (mock) I do not have an environment in mind.
+
 workflows:
   build-test-workflow:
     jobs:
       - build-and-test
+      - approve-production:
+          requires:
+            - build-and-test
+      - deploy:
+          requires:
+            - approve-production
