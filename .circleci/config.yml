@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  approval-production:
+  approve-production:
     type: approval
     docker:
       - image: cimg/base:2024.02
@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run:
           command: |
-            echo (mock) I do not have an environment in mind.
+            echo "(mock) I do not have an environment in mind."
 
 workflows:
   build-test-workflow:
