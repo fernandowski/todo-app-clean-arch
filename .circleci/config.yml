@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: cimg/node:18.7.0-browsers
+      - image: node:21-alpine3.18
     steps:
       - checkout
       - run:
