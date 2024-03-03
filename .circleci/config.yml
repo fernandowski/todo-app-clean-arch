@@ -1,13 +1,5 @@
 version: 2.1
 jobs:
-  approve-production:
-    type: approval
-    docker:
-      - image: cimg/base:2024.02
-    steps:
-      - run:
-          name: Awaiting Approval
-          command: echo "Deployment requires manual approval"
   build-and-test:
     docker:
       - image: cimg/base:2024.02
@@ -26,12 +18,20 @@ jobs:
       - run:
           command: |
             echo "(mock) I do not have an environment in mind."
+  approve-production:
+    docker:
+      - image: cimg/base:2024.02
+    steps:
+      - run:
+          name: Awaiting Approval
+          command: echo "Deployment requires manual approval"
 
 workflows:
   build-test-workflow:
     jobs:
       - build-and-test
       - approve-production:
+          type: approval
           requires:
             - build-and-test
       - deploy:
