@@ -1,0 +1,15 @@
+version: 2.1
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:18.7.0-browsers
+    steps:
+      - checkout
+      - run:
+          name: Execute Units
+          command: |
+            docker build . --target=unit-test
+workflows:
+  build-test-workflow:
+    jobs:
+      - build-and-test

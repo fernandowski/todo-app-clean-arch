@@ -1,11 +1,17 @@
 version: "3.9"
 
 services:
-  todo-application:
-    build: .
-    command: ["yarn", "run", "dev"]
+  todo-application-dev:
+    build:
+      context: .
+      target: build
+    command: ["yarn", "dev"]
     ports:
       - "3000:3000"
     image: todo-app
     volumes:
-      - .:/app
+      - .:/app\
+  unit:
+    build:
+      context: .
+      target: unit-test
