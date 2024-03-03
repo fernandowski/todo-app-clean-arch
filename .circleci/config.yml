@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: node:21-alpine3.18
+      - image: cimg/base:2022.09
     steps:
       - checkout
       - run:
